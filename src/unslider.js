@@ -28,7 +28,8 @@
 			items: '>ul',   // slides container selector
 			item: '>li',    // slidable items selector
 			easing: 'swing',// easing function to use for animation
-			autoplay: true  // enable autoplay on initialisation
+			autoplay: true ,// enable autoplay on initialisation
+			setWidth: f 	// force to set the element width of the element
 		};
 
 		_.init = function(el, o) {
@@ -59,7 +60,12 @@
 			_.i = 0;
 
 			//  Set the main element
-			el.css({width: _.max[0], height: li.first().outerHeight(), overflow: 'hidden'});
+			if(o.setWidth){
+				//  set the force width
+				el.css({width: o.setWidth, height: li.first().outerHeight(), overflow: 'hidden'});
+			}else{
+				el.css({width: _.max[0], height: li.first().outerHeight(), overflow: 'hidden'});
+			}
 
 			//  Set the relative widths
 			ul.css({position: 'relative', left: 0, width: (len * 100) + '%'});
